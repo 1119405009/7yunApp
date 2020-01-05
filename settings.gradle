@@ -1,0 +1,2 @@
+include ':app', ':7yun-annotations', ':7yun-compiler', ':7yun-core', ':7yun-ec'
+rootProject.name='7yun'
