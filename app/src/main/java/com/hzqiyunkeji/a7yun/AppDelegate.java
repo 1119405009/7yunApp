@@ -29,7 +29,8 @@ public class AppDelegate extends LatteDelegate {
     }
 
     private void testRestClient() {
-        RestClient.builder().loader(getContext()).url("https://www.baidu.com/?tn=93153557_hao_pg").success(new ISuccess() {
+        RestClient.builder().loader(getContext()).url("https://www.baidu.com/?tn=93153557_hao_pg").success(
+                new ISuccess() {
             @Override
             public void onSuccess(String response) {
 

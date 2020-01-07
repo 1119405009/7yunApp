@@ -9,6 +9,7 @@ import com.hzqiyunkeji.core.activities.ProxyActivity;
 import com.hzqiyunkeji.core.delegates.LatteDelegate;
 import com.hzqiyunkeji.ec.launcher.LauncherDelegate;
 import com.hzqiyunkeji.ec.launcher.LauncherScrollDelegate;
+import com.hzqiyunkeji.ec.sign.SignUpDelegate;
 
 
 public class AppActivity extends ProxyActivity {
@@ -27,7 +28,7 @@ public class AppActivity extends ProxyActivity {
 
     @Override
     public LatteDelegate setRootDelegate() {
-        return new LauncherDelegate();
+        return new SignUpDelegate();
     }
 
 }
