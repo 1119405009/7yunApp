@@ -23,7 +23,7 @@ public final class RestClientBuilder {
 
     private static final WeakHashMap<String, Object> PARAMS = RestCreator.getParams();
     private String mUrl = null;
-    private  String mToken=null;
+    private static final WeakHashMap<String, Object> HEADERS = new WeakHashMap<>();
     private IRequest mIRequest = null;
     private ISuccess mISuccess = null;
     private IFailure mIFailure = null;
@@ -43,8 +43,12 @@ public final class RestClientBuilder {
         this.mUrl = url;
         return this;
     }
-    public final RestClientBuilder token(String token) {
-        this.mToken = token;
+    public final RestClientBuilder headers (WeakHashMap<String, Object>  headers) {
+        HEADERS .putAll(headers);
+        return this;
+    }
+    public final RestClientBuilder headers (String key, Object value) {
+        HEADERS.put(key, value);
         return this;
     }
 
@@ -121,7 +125,7 @@ public final class RestClientBuilder {
     }
 
     public final RestClient build() {
-        return new RestClient(mUrl,mToken, PARAMS,
+        return new RestClient(mUrl,HEADERS, PARAMS,
                 mDownloadDir, mExtension, mName,
                 mIRequest, mISuccess, mIFailure,
                 mIError, mBody, mFile, mContext,

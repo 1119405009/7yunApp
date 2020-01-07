@@ -49,6 +49,7 @@ public final class RestCreator {
 
         private static final OkHttpClient OK_HTTP_CLIENT = addInterceptor()
                 .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
+
                 .build();
     }
 

@@ -30,7 +30,7 @@ public final class RestClient {
 
     private static final WeakHashMap<String, Object> PARAMS = RestCreator.getParams();
     private final String URL;
-    private final String APP_TOKEN;
+    private static final WeakHashMap<String, Object> HEADERS = RestCreator.getParams();
     private final IRequest REQUEST;
     private final String DOWNLOAD_DIR;
     private final String EXTENSION;
@@ -44,7 +44,7 @@ public final class RestClient {
     private final Context CONTEXT;
 
     RestClient(String url,
-               String token,
+               Map<String, Object>  headers,
                Map<String, Object> params,
                String downloadDir,
                String extension,
@@ -58,7 +58,7 @@ public final class RestClient {
                Context context,
                LoaderStyle loaderStyle) {
         this.URL = url;
-        this.APP_TOKEN=token;
+        HEADERS.putAll(headers);
         PARAMS.putAll(params);
         this.DOWNLOAD_DIR = downloadDir;
         this.EXTENSION = extension;
@@ -91,29 +91,29 @@ public final class RestClient {
 
         switch (method) {
             case GET:
-                call = service.get(URL,APP_TOKEN, PARAMS);
+                call = service.get(URL,HEADERS, PARAMS);
                 break;
             case POST:
-                call = service.post(URL,APP_TOKEN, PARAMS);
+                call = service.post(URL,HEADERS, PARAMS);
                 break;
             case POST_RAW:
-                call = service.postRaw(URL,APP_TOKEN,BODY);
+                call = service.postRaw(URL,HEADERS,BODY);
                 break;
             case PUT:
-                call = service.put(URL,APP_TOKEN, PARAMS);
+                call = service.put(URL,HEADERS, PARAMS);
                 break;
             case PUT_RAW:
-                call = service.putRaw(URL,APP_TOKEN, BODY);
+                call = service.putRaw(URL,HEADERS, BODY);
                 break;
             case DELETE:
-                call = service.delete(URL,APP_TOKEN, PARAMS);
+                call = service.delete(URL,HEADERS, PARAMS);
                 break;
             case UPLOAD:
                 final RequestBody requestBody =
                         RequestBody.create(MediaType.parse(MultipartBody.FORM.toString()), FILE);
                 final MultipartBody.Part body =
                         MultipartBody.Part.createFormData("file", FILE.getName(), requestBody);
-                call = service.upload(URL,APP_TOKEN, body);
+                call = service.upload(URL,HEADERS, body);
                 break;
             default:
                 break;

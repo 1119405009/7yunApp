@@ -1,5 +1,6 @@
 package com.hzqiyunkeji.core.net;
 
+
 import java.util.WeakHashMap;
 
 import okhttp3.MultipartBody;
@@ -12,6 +13,7 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.HeaderMap;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -25,25 +27,26 @@ import retrofit2.http.Url;
  */
 public interface RestService {
 
+
     @GET
-    Call<String> get( @Url String url,@Header("X-Request-Token") String token, @QueryMap WeakHashMap<String, Object> params);
+    Call<String> get(@Url String url, @HeaderMap WeakHashMap<String, Object> headers, @QueryMap WeakHashMap<String, Object> params);
 
     @FormUrlEncoded
     @POST
-    Call<String> post(@Url String url,@Header("X-Request-Token") String token, @FieldMap WeakHashMap<String, Object> params);
+    Call<String> post(@Url String url,@HeaderMap WeakHashMap<String, Object> headers, @Body WeakHashMap<String, Object> params);
 
     @POST
-    Call<String> postRaw(@Url String url,@Header("X-Request-Token") String token, @Body RequestBody body);
+    Call<String> postRaw(@Url String url,@HeaderMap WeakHashMap<String, Object> headers, @Body RequestBody body);
 
     @FormUrlEncoded
     @PUT
-    Call<String> put(@Url String url,@Header("X-Request-Token") String token, @FieldMap WeakHashMap<String, Object> params);
+    Call<String> put(@Url String url,@HeaderMap WeakHashMap<String, Object> headers, @FieldMap WeakHashMap<String, Object> params);
 
     @PUT
-    Call<String> putRaw(@Url String url,@Header("X-Request-Token") String token, @Body RequestBody body);
+    Call<String> putRaw(@Url String url,@HeaderMap WeakHashMap<String, Object> headers, @Body RequestBody body);
 
     @DELETE
-    Call<String> delete(@Url String url,@Header("X-Request-Token") String token, @QueryMap WeakHashMap<String, Object> params);
+    Call<String> delete(@Url String url,@HeaderMap WeakHashMap<String, Object> headers, @QueryMap WeakHashMap<String, Object> params);
 
     @Streaming
     @GET
@@ -51,5 +54,5 @@ public interface RestService {
 
     @Multipart
     @POST
-    Call<String> upload(@Url String url, @Header("X-Request-Token") String token,@Part MultipartBody.Part file);
+    Call<String> upload(@Url String url, @HeaderMap WeakHashMap<String, Object> headers,@Part MultipartBody.Part file);
 }

@@ -53,11 +53,11 @@ dependencies {
     //Loader依赖
     implementation 'com.wang.avi:library:2.1.3'
     //网络请求依赖
-    implementation'com.squareup.retrofit2:retrofit:2.3.0'
-    implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
-    implementation project(path: ':7yun-annotations')
-    implementation 'com.squareup.okio:okio:2.4.3'
-    implementation 'com.squareup.okhttp3:okhttp:3.14.4'
+    api'com.squareup.retrofit2:retrofit:2.3.0'
+    api 'com.squareup.retrofit2:converter-scalars:2.3.0'
+    api project(path: ':7yun-annotations')
+    api 'com.squareup.okio:okio:2.4.3'
+    api 'com.squareup.okhttp3:okhttp:3.14.4'
     //Banner依赖
     api 'com.bigkoo:convenientbanner:2.0.5'
     api 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
